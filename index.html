@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>進制轉換器</title>
+    <style>
+        button {
+            width: 200px; /* 設置寬度 */
+            height: 30px; /* 設置高度 */
+            margin: 5px 0; /* 添加外邊距 */
+        }
+    </style>
+    <script>
+        function convertNumber() {
+            var inputBase = parseInt(document.getElementById("inputBase").value);
+            var outputBase = parseInt(document.getElementById("outputBase").value);
+            var numberToConvert = document.getElementById("numberToConvert").value;
+
+            var convertedNumber = parseInt(numberToConvert, inputBase).toString(outputBase);
+
+            document.getElementById("result").innerHTML = "轉換結果: " + convertedNumber;
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                convertNumber();
+                event.preventDefault();  // 防止提交表單
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>進制轉換器</h1>
+
+        <form>
+            <p>選擇輸入進制:</p>
+            <select id="inputBase">
+                <option value="2">二進制</option>
+                <option value="8">八進制</option>
+                <option value="10" selected>十進制</option>
+                <option value="16">十六進制</option>
+            </select>
+            <p>選擇輸出進制:</p>
+            <select id="outputBase">
+                <option value="2">二進制</option>
+                <option value="8">八進制</option>
+                <option value="10">十進制</option>
+                <option value="16">十六進制</option>
+            </select>
+            <br></br>
+            <input class="input" type="text" id="numberToConvert" placeholder="輸入要轉換的數字" onkeypress="handleKeyPress(event)" />
+            <button type="button" class="button" onclick="convertNumber()">轉換</button>
+        </form>
+
+        <div class="result">
+            <p id="result"></p>
+        </div>
+    </div>
+</body>
+</html>
+    
